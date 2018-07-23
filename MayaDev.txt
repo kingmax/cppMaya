@@ -1,0 +1,20 @@
+Maya Dev::
+
+插件分发与部署 http://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_GUID_9E096E39_AD0D_4E40_9B2A_9127A2CAD54B_htm
+----------------------------------------------------------
+1.单文件插件、脚本 (直接拷到对应目录或通过env)
+	•MAYA_PLUG_IN_PATH - directories to search for plug-ins 
+	•MAYA_SCRIPT_PATH - directories to search for MEL and Python scripts 
+	•XBMLANGPATH - directories to search for icons 
+	•MAYA_PRESET_PATH - directories to search for Maya presets 
+	getenv MAYA_PLUG_IN_PATH
+	Maya.env
+
+2.多文件模块(.mod) http://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_GUID_CB76E356_753B_4837_8C5B_3296C14872CA_htm
+	A module consists of a root directory which contains a module description file and the following sub-directories: 
+	•icons, 
+	•plug-ins, 
+	•presets, 
+	•scripts, 
+	ref:http://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_GUID_130A3F57_2A5D_4E56_B066_6B86F68EEA22_htm#SECTION_2818A1ED7B8447859977F7155A4F8371
+	.mod file
