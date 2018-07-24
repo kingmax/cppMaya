@@ -19,6 +19,7 @@ MStatus pickExample::doIt(const MArgList& args)
 	for (unsigned int i = 0; i < list.length(); i++)
 	{
 		list.getDagPath(i, node, component);
+		node.extendToShape();  //get the shape node
 		nodeFn.setObject(node);
 		//cout << nodeFn.name().asChar() << " is selected." << endl;
 		MString msg = nodeFn.name() + " is selected.";

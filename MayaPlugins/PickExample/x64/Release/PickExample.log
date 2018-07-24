@@ -1,8 +1,8 @@
 ﻿  list_selection.cpp
     正在创建库 D:\git\cppMaya\MayaPlugins\x64\Release\PickExample.lib 和对象 D:\git\cppMaya\MayaPlugins\x64\Release\PickExample.exp
   正在生成代码
-  2 of 9 functions (22.2%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
+  0 of 9 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   PickExample.vcxproj -> D:\git\cppMaya\MayaPlugins\x64\Release\PickExample.mll
