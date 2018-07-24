@@ -32,6 +32,8 @@
 *.out
 *.app
 
-# VS locked
-*.vs/*
+# VS locked or others
+**/.vs/*
 *.opendb
+*.tlog
+**/Release/*

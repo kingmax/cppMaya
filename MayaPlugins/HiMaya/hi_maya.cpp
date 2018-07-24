@@ -3,7 +3,7 @@
 
 void* HiMaya::creator()
 {
-	return new HiMaya;
+	return new HiMaya();
 }
 
 MStatus HiMaya::doIt(const MArgList& args)
