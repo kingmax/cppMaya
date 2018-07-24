@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloMaya", "HelloMaya\Hell
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HiMaya", "HiMaya\HiMaya.vcxproj", "{1449588D-0989-4618-8CBB-08B2A13F9380}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PickExample", "PickExample\PickExample.vcxproj", "{E42894EF-5E8F-4846-B23C-481D8B947B44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{1449588D-0989-4618-8CBB-08B2A13F9380}.Release|x64.Build.0 = Release|x64
 		{1449588D-0989-4618-8CBB-08B2A13F9380}.Release|x86.ActiveCfg = Release|Win32
 		{1449588D-0989-4618-8CBB-08B2A13F9380}.Release|x86.Build.0 = Release|Win32
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Debug|x64.ActiveCfg = Debug|x64
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Debug|x64.Build.0 = Debug|x64
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Debug|x86.ActiveCfg = Debug|Win32
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Debug|x86.Build.0 = Debug|Win32
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Release|x64.ActiveCfg = Release|x64
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Release|x64.Build.0 = Release|x64
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Release|x86.ActiveCfg = Release|Win32
+		{E42894EF-5E8F-4846-B23C-481D8B947B44}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
