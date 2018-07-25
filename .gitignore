@@ -18,8 +18,8 @@
 *.mll
 
 # Fortran module files
-*.mod
-*.smod
+#*.mod
+#*.smod
 
 # Compiled Static libraries
 *.lai
