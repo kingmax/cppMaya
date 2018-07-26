@@ -10,14 +10,16 @@ from maya import cmds
 ##########################################################################
 def getMayaMainWindow():
     ptr = OpenMayaUI.MQtUtil.mainWindow()
-    return wrapInstance(long(ptr), QtCore.QObject)
+    return wrapInstance(long(ptr), QtWidgets.QWidget)
 
-class win(QtWidgets.QWidget, _ui):
+class Win(QtWidgets.QWidget, _ui):
     def __init__(self, parent=None):
-        super(win, self).__init__()
+        #super(Win, self).__init__(parent) # transparent and position error, cann't move
+        super(Win, self).__init__()
         #self.ui = _ui()
         #self.ui.setupUi(self)
         self.setupUi(self)
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint) # TopMost
         
         self.btnA.clicked.connect(self.btnA_click)
         self.btnB.clicked.connect(self.btnB_click)
@@ -43,12 +45,12 @@ class win(QtWidgets.QWidget, _ui):
 ##########################################################################
 def main():
     p = getMayaMainWindow()
-    w = win(p)
+    w = Win(p)
     w.show()
 
 ##########################################################################
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv) #if in maya, comment this line
+    #app = QtWidgets.QApplication(sys.argv) #if in maya, comment this line
     
     p = None
     try:
@@ -57,10 +59,10 @@ if __name__ == '__main__':
         print(ex.message)
         print('[Warning] Maybe in standalone dev/debug mode, not in Maya\n')
         
-    w = win(p)
+    w = Win(p)
     w.show()
     
-    sys.exit(app.exec_())  #if in maya, comment this line
+    #sys.exit(app.exec_())  #if in maya, comment this line
 
 ##########################################################################
 #test in Maya2018 Win10
@@ -69,5 +71,5 @@ if __name__ == '__main__':
 #launch maya
 #import demo
 #reload(demo)
-#w = demo.win(demo.getMayaMainWindow())
+#w = demo.Win(demo.getMayaMainWindow())
 #w.show()
