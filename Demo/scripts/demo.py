@@ -15,11 +15,12 @@ def getMayaMainWindow():
 class Win(QtWidgets.QWidget, _ui):
     def __init__(self, parent=None):
         #super(Win, self).__init__(parent) # transparent and position error, cann't move
-        super(Win, self).__init__()
+        super(Win, self).__init__(parent)
         #self.ui = _ui()
         #self.ui.setupUi(self)
         self.setupUi(self)
-        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint) # TopMost
+        if parent:
+            self.setWindowFlags(parent.windowFlags() | QtCore.Qt.WindowStaysOnTopHint) # TopMost
         
         self.btnA.clicked.connect(self.btnA_click)
         self.btnB.clicked.connect(self.btnB_click)
