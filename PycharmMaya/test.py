@@ -14,11 +14,14 @@ def getMayaMainWindow():
 
 class Win(QtWidgets.QWidget, _ui):
     def __init__(self, parent=None):
-        super(Win, self).__init__(parent)
+        super(Win, self).__init__(parent=parent)
         self.setupUi(self)
         #self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         if parent:
-            self.setWindowFlags(parent.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
+            #self.setParent(parent)
+            #ref: http://help.autodesk.com/view/MAYAUL/2018/ENU/?guid=__files_GUID_3F96AF53_A47E_4351_A86A_396E7BFD6665_htm
+            self.setWindowFlags(QtCore.Qt.Window)
+            #self.setWindowFlags(parent.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
 
         self.btnA.clicked.connect(self.btnA_click)
         self.btnB.clicked.connect(self.btnB_click)
