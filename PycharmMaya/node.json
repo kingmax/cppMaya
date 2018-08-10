@@ -1,0 +1,24 @@
+{
+  "name": "node",
+  "ui_name": "node ui name",
+  "desc": "this is a node",
+
+  "params":
+  [
+    {
+      "name": "param1",
+      "type": "string",
+      "value": "a string param",
+      "default": "a string param"
+    },
+
+    {
+      "name": "param 2",
+      "type": "int",
+      "value": "100",
+      "default": "10"
+    }
+  ],
+
+  "command": "cmds.polyCube()"
+}
