@@ -15,13 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="posts1.cpp">
+    <ClCompile Include="posts2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="plugin_test.mel">
-      <Filter>源文件</Filter>
-    </None>
   </ItemGroup>
 </Project>
