@@ -35,5 +35,11 @@
 # VS locked or others
 **/.vs/*
 *.opendb
-*.tlog
 **/Release/*
+*.exp
+*.iobj
+*.ipdb
+*.lib
+*.pdb
+*.log
+*.tlog
