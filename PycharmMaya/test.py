@@ -1,7 +1,8 @@
 import sys
 
 from PySide2 import QtGui, QtCore, QtWidgets
-from demo_ui import Ui_Form as _ui
+#from demo_ui import Ui_Form as _ui
+from test_ui import Ui_MainWindow as _ui
 
 from shiboken2 import wrapInstance
 from maya import OpenMayaUI
@@ -17,7 +18,8 @@ def getMayaMainWindow():
     ptr = OpenMayaUI.MQtUtil.mainWindow()
     return wrapInstance(long(ptr), QtWidgets.QWidget)
 
-class Win(QtWidgets.QWidget, _ui):
+#class Win(QtWidgets.QWidget, _ui):
+class Win(QtWidgets.QMainWindow, _ui):
     def __init__(self, parent=None):
         super(Win, self).__init__(parent=parent)
         self.setupUi(self)
@@ -28,9 +30,9 @@ class Win(QtWidgets.QWidget, _ui):
             self.setWindowFlags(QtCore.Qt.Window)
             # self.setWindowFlags(parent.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
 
-        self.btnA.clicked.connect(self.btnA_click)
-        self.btnB.clicked.connect(self.btnB_click)
-        self.btnC.clicked.connect(self.btnC_click)
+        #self.btnA.clicked.connect(self.btnA_click)
+        #self.btnB.clicked.connect(self.btnB_click)
+        #self.btnC.clicked.connect(self.btnC_click)
         try:
             cmds.loadPlugin('MultiCommand')
         except:
@@ -48,21 +50,19 @@ class Win(QtWidgets.QWidget, _ui):
         print(dagPath.fullPathName())
 
         myStrings = []
-        #sel.getSelectionStrings(myStrings)
+        # sel.getSelectionStrings(myStrings)
         myStrings = sel.getSelectionStrings()
         print(myStrings)
-
-
 
     def btnB_click(self):
         print('btnB_click')
         # cmds.mCmd2()
 
         from maya import OpenMaya
-        types = OpenMaya.MStringArray() #error, python api removed MString, MStringArray!!!
+        types = OpenMaya.MStringArray() # error, python api removed MString, MStringArray!!!
         io = OpenMaya.MFileIO()
         io.getFileTypes(types)
-        #types = OpenMaya.MGlobal.MFileIO.getFileTypes()
+        # types = OpenMaya.MGlobal.MFileIO.getFileTypes()
         print(types)
 
     def btnC_click(self):

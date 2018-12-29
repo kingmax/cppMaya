@@ -1,0 +1,1 @@
+"C:\Program Files\Autodesk\Maya2018\bin\mayapy.exe" D:/git/pyside2-tools/pyside2-uic D:\git\NeoBards\QAToolbag\QAToolbag.ui
