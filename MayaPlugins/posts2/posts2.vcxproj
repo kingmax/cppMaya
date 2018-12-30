@@ -126,6 +126,9 @@
   <ItemGroup>
     <ClCompile Include="posts2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="test_posts2.mel" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

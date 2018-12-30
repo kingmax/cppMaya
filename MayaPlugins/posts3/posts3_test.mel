@@ -1,0 +1,10 @@
+string $dir="D:\\git\\cppMaya\\MayaPlugins\\x64\\Release";
+string $nam="posts3.mll";
+$plg = $dir + "\\" + $nam;
+if(`pluginInfo -q -loaded $plg` && !`pluginInfo -q -unloadOk $plg`)
+    file -f -new;
+unloadPlugin $nam;
+loadPlugin $plg;
+
+posts3;
+posts3 -n 10 -r 0.5 -h 5;
