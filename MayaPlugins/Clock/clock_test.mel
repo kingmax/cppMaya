@@ -1,0 +1,16 @@
+string $dir="D:\\git\\cppMaya\\MayaPlugins\\x64\\Release";
+string $nam="clock.mll";
+$plg = $dir + "\\" + $nam;
+if(`pluginInfo -q -loaded $plg` && !`pluginInfo -q -unloadOk $plg`)
+    file -f -new;
+unloadPlugin $nam;
+loadPlugin $plg;
+
+clock -e -time 1018;
+clock -q -time;
+clock -e -t 745;
+clock -e -t 930;
+undo;
+redo;
+
+help clock;
