@@ -8,3 +8,5 @@ loadPlugin $plg;
 
 select "rim";
 goRolling;
+undo;
+redo;
