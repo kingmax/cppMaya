@@ -7,7 +7,8 @@
 #include <maya/MItSelectionList.h>
 #include <maya/MFn.h>
 #include <maya/MSyntax.h>
-#include <maya/MFnPlugin.h>
+#include <maya/MPlug.h>
+//#include <maya/MFnPlugin.h>
 
 MStatus GoRollingCmd::doIt(const MArgList &args)
 {
@@ -49,26 +50,28 @@ MSyntax GoRollingCmd::newSyntax()
 	return syntax;
 }
 
-MStatus initializePlugin(MObject obj)
-{
-	MFnPlugin pluginFn(obj, "jason.li", "0.1");
-	MStatus stat;
-	stat = pluginFn.registerCommand("goRolling", GoRollingCmd::creator, GoRollingCmd::newSyntax);
-	if (!stat)
-	{
-		stat.perror("registerCommand failed");
-	}
-	return stat;
-}
-
-MStatus uninitializePlugin(MObject obj)
-{
-	MFnPlugin pluginFn(obj);
-	MStatus stat;
-	stat = pluginFn.deregisterCommand("goRolling");
-	if (!stat)
-	{
-		stat.perror("deregisterCommand failed");
-	}
-	return stat;
-}
+//
+//MStatus initializePlugin(MObject obj)
+//{
+//	MFnPlugin pluginFn(obj, "jason.li", "0.1");
+//	MStatus stat;
+//	stat = pluginFn.registerCommand("goRolling", GoRollingCmd::creator, GoRollingCmd::newSyntax);
+//	if (!stat)
+//	{
+//		stat.perror("registerCommand failed");
+//	}
+//	return stat;
+//}
+//
+//MStatus uninitializePlugin(MObject obj)
+//{
+//	MFnPlugin pluginFn(obj);
+//	MStatus stat;
+//	stat = pluginFn.deregisterCommand("goRolling");
+//	if (!stat)
+//	{
+//		stat.perror("deregisterCommand failed");
+//	}
+//	return stat;
+//}
+//

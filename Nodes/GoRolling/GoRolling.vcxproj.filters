@@ -18,10 +18,24 @@
     <ClCompile Include="GoRollingCmd.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="RollingNode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pluginMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GoRollingCmd.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="RollingNode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="goRolling_test.mel">
+      <Filter>源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

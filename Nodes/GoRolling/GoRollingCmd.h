@@ -1,4 +1,7 @@
-#pragma once
+//#pragma once
+
+#ifndef __GO_ROLLING_CMD_H__
+#define __GO_ROLLING_CMD_H__
 
 #include <maya/MPxCommand.h>
 #include <maya/MDGModifier.h>
@@ -17,3 +20,4 @@ private:
 	MDGModifier dgMod;
 };
 
+#endif // !__GO_ROLLING_CMD_H__
