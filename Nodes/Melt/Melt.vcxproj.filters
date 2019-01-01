@@ -29,5 +29,13 @@
     <ClCompile Include="meltNode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="meltMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="melt_test.mel">
+      <Filter>源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

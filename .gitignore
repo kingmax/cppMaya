@@ -15,7 +15,7 @@
 *.so
 *.dylib
 *.dll
-*.mll
+# *.mll
 
 # Fortran module files
 #*.mod
@@ -35,7 +35,8 @@
 # VS locked or others
 **/.vs/*
 *.opendb
-**/Release/*
+**/Debug/*
+# **/Release/*
 *.exp
 *.iobj
 *.ipdb

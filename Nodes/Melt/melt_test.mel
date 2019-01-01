@@ -1,12 +1,18 @@
 string $dir="D:\\git\\cppMaya\\Release";
-string $nam="GoRolling.mll";
+string $nam="Melt.mll";
 $plg = $dir + "\\" + $nam;
 if(`pluginInfo -q -loaded $plg` && !`pluginInfo -q -unloadOk $plg`)
     file -f -new;
 unloadPlugin $nam;
 loadPlugin $plg;
 
-select "rim";
-goRolling;
-undo;
-redo;
+//
+file -f -new;
+
+string $sp[] = `sphere -p 0 1 0 -ax 0 1 0 -s 16 -nsp 8`;
+move -r 5 0 0;
+cone -p 0 1 0 -ax 0 1 0 -s 16 -nsp 8;
+select -all;
+
+melt;
+play;

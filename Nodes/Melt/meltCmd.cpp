@@ -45,11 +45,11 @@ MStatus MeltCmd::doIt(const MArgList &args)
 			dgMod.renameNode(meltNode, name);
 
 			MString cmd;
-			cmd = MString("setkeyframe -at amount -t ")
+			cmd = MString("setKeyframe -at amount -t ")
 				+ startTime.value()
 				+ " -v " + 0.0 + " " + name;
 			dgMod.commandToExecute(cmd);
-			cmd = MString("setkeyframe -at amount -t ")
+			cmd = MString("setKeyframe -at amount -t ")
 				+ endTime.value()
 				+ " -v " + 1.0 + " " + name;
 			dgMod.commandToExecute(cmd);

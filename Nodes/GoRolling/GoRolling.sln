@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoRolling", "GoRolling.vcxproj", "{F55E3820-28AC-415A-AB3E-38A6D2DC7888}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Melt", "Melt\Melt.vcxproj", "{A364AAF6-2E63-4161-8217-D23569E8D228}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Melt", "..\Melt\Melt.vcxproj", "{A364AAF6-2E63-4161-8217-D23569E8D228}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
