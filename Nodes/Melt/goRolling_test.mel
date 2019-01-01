@@ -1,0 +1,12 @@
+string $dir="D:\\git\\cppMaya\\Release";
+string $nam="goRolling.mll";
+$plg = $dir + "\\" + $nam;
+if(`pluginInfo -q -loaded $plg` && !`pluginInfo -q -unloadOk $plg`)
+    file -f -new;
+unloadPlugin $nam;
+loadPlugin $plg;
+
+select "rim";
+goRolling;
+undo;
+redo;

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoRolling", "GoRolling.vcxproj", "{F55E3820-28AC-415A-AB3E-38A6D2DC7888}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Melt", "Melt\Melt.vcxproj", "{A364AAF6-2E63-4161-8217-D23569E8D228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{F55E3820-28AC-415A-AB3E-38A6D2DC7888}.Release|x64.Build.0 = Release|x64
 		{F55E3820-28AC-415A-AB3E-38A6D2DC7888}.Release|x86.ActiveCfg = Release|Win32
 		{F55E3820-28AC-415A-AB3E-38A6D2DC7888}.Release|x86.Build.0 = Release|Win32
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Debug|x64.ActiveCfg = Debug|x64
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Debug|x64.Build.0 = Debug|x64
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Debug|x86.ActiveCfg = Debug|Win32
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Debug|x86.Build.0 = Debug|Win32
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x64.ActiveCfg = Release|x64
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x64.Build.0 = Release|x64
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x86.ActiveCfg = Release|Win32
+		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
