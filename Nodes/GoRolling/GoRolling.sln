@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoRolling", "GoRolling.vcxp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Melt", "..\Melt\Melt.vcxproj", "{A364AAF6-2E63-4161-8217-D23569E8D228}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GroundShadow", "..\GroundShadow\GroundShadow.vcxproj", "{499C88D9-4151-4FB7-ACB3-59DA49513876}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x64.Build.0 = Release|x64
 		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x86.ActiveCfg = Release|Win32
 		{A364AAF6-2E63-4161-8217-D23569E8D228}.Release|x86.Build.0 = Release|Win32
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Debug|x64.ActiveCfg = Debug|x64
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Debug|x64.Build.0 = Debug|x64
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Debug|x86.ActiveCfg = Debug|Win32
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Debug|x86.Build.0 = Debug|Win32
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Release|x64.ActiveCfg = Release|x64
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Release|x64.Build.0 = Release|x64
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Release|x86.ActiveCfg = Release|Win32
+		{499C88D9-4151-4FB7-ACB3-59DA49513876}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

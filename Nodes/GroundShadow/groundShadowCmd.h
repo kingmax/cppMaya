@@ -1,7 +1,7 @@
 #pragma once
 
 #include <maya/MPxCommand.h>
-#include <maya/MDGModifier.h>
+#include <maya/MDagModifier.h>
 
 class GroundShadowCmd : public MPxCommand
 {
@@ -15,5 +15,5 @@ public:
 	static MSyntax newSyntax();
 
 private:
-	MDGModifier dgMod;
+	MDagModifier dagMod;
 };

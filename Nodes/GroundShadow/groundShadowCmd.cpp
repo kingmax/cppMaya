@@ -1,4 +1,5 @@
 #include "groundShadowCmd.h"
+#include "groundShadowNode.h"
 
 #include <maya/MObject.h>
 #include <maya/MSelectionList.h>
@@ -9,6 +10,8 @@
 #include <maya/MDagPath.h>
 #include <maya/MPlug.h>
 #include <maya/MFnDagNode.h>
+
+#include <cassert>
 
 MStatus GroundShadowCmd::doIt(const MArgList& args)
 {
@@ -27,8 +30,10 @@ MStatus GroundShadowCmd::doIt(const MArgList& args)
 	displayInfo("active selection count: " + selection.length());
 	
 	MItSelectionList iter(selection);
+
 	MDagPath lightTransformPath;
 	MPlug pointLightTranslatePlug;
+
 	iter.setFilter(MFn::kPointLight);
 	for (; !iter.isDone(); iter.next())
 	{
@@ -48,5 +53,72 @@ MStatus GroundShadowCmd::doIt(const MArgList& args)
 		return MS::kFailure;
 	}
 
+	iter.setFilter(MFn::kGeometric);
+	unsigned count;
+	for (iter.reset(), count=0; !iter.isDone(); iter.next(), count++)
+	{
+		MDagPath geomShapePath;
+		iter.getDagPath(geomShapePath);
+		MDagPath geomTransformPath(geomShapePath);
+		geomTransformPath.pop();
 
+		MFnDagNode geomShapeFn(geomShapePath);
+		MObject newGeomTransformObj = geomShapeFn.duplicate(false, false);
+
+		MFnDagNode newGeomShapeFn(newGeomTransformObj);
+		newGeomShapeFn.setObject(newGeomShapeFn.child(0));
+
+		dagMod.reparentNode(newGeomShapeFn.object(), geomTransformPath.node());
+		shadingGroupFn.addMember(newGeomShapeFn.object());
+
+		MObject shadowNode = dagMod.createNode(GroundShadowNode::id);
+		//assert(!shadowNode.isNull());
+
+		MFnDependencyNode shadowNodeFn(shadowNode);
+		MPlug castingSurfacePlug = shadowNodeFn.findPlug("castingSurface");
+		MPlug shadowSurfacePlug = shadowNodeFn.findPlug("shadowSurface");
+		MPlug lightPositionPlug = shadowNodeFn.findPlug("lightPosition");
+
+		MString outGeomPlugName, inGeomPlugName;
+		switch (geomShapePath.apiType())
+		{
+		case MFn::kMesh:
+			outGeomPlugName = "worldMesh";
+			inGeomPlugName = "inMesh";
+			break;
+		case MFn::kNurbsSurface:
+			outGeomPlugName = "worldSpace";
+			inGeomPlugName = "create";
+			break;
+		default:
+			break;
+		}
+		MPlug outGeomPlug = geomShapeFn.findPlug(outGeomPlugName);
+		
+		unsigned instanceNum = geomShapePath.instanceNumber();
+		outGeomPlug.selectAncestorLogicalIndex(instanceNum);
+
+		MPlug inGeomPlug = newGeomShapeFn.findPlug(inGeomPlugName);
+
+		dagMod.connect(pointLightTranslatePlug, lightPositionPlug);
+		dagMod.connect(outGeomPlug, castingSurfacePlug);
+		dagMod.connect(shadowSurfacePlug, inGeomPlug);
+	}
+	if (count == 0)
+	{
+		MGlobal::displayError("\nSelect one or more geometric objects.");
+		return MS::kFailure;
+	}
+
+	return redoIt();
+}
+
+MStatus GroundShadowCmd::redoIt()
+{
+	return dagMod.doIt();
+}
+
+MStatus GroundShadowCmd::undoIt()
+{
+	return dagMod.undoIt();
 }
