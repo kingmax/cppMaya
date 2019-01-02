@@ -59,3 +59,37 @@ bool BasicLocator::getCirclePoints(MPointArray &pts) const
 
 	return true;
 }
+
+void BasicLocator::draw(M3dView &view, const MDagPath &path,
+	M3dView::DisplayStyle style,
+	M3dView::DisplayStatus status)
+{
+	view.beginGL();
+	glPushAttrib(GL_CURRENT_BIT);
+	
+	MPointArray pts;
+	getCirclePoints(pts);
+
+	glBegin(GL_LINE_STRIP);
+		for (size_t i = 0; i < pts.length(); i++)
+		{
+			glVertex3f(float(pts[i].x), float(pts[i].y), float(pts[i].z));
+		}
+	glEnd();
+
+	glBegin(GL_LINES);
+		glVertex3f(-0.5f, 0.0f, 0.0f);
+		glVertex3f(0.5f, 0.0f, 0.0f);
+		glVertex3f(0.0f, 0.0f, -0.5f);
+		glVertex3f(0.0f, 0.0f, 0.5f);
+	glEnd();
+
+	glPopAttrib();
+
+	view.endGL();
+}
+
+bool BasicLocator::isBounded() const
+{
+	return true;
+}
