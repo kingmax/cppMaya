@@ -11,6 +11,7 @@
 #include <maya/MObject.h>
 #include <maya/MTypeId.h>
 #include <maya/MString.h>
+#include <maya/MGlobal.h>
 
 const double M_2PI = M_PI * 2.0;
 
@@ -116,6 +117,7 @@ bool BasicLocator::getCirclePoints(MPointArray &pts) const
 	{
 		pt.x = xWidthValue * cos(angle);
 		pt.z = zWidthValue * sin(angle);
+		cout << "(" << pt.x << ", " << pt.y << ")\n";
 		pts.append(pt);
 	}
 
