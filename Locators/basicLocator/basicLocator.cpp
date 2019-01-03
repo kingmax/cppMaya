@@ -5,9 +5,71 @@
 
 #include <maya/MPointArray.h>
 #include <maya/MFnDagNode.h>
-
+#include <maya/MFnUnitAttribute.h>
+#include <maya/MFnNumericAttribute.h>
+#include <maya/MDistance.h>
+#include <maya/MObject.h>
+#include <maya/MTypeId.h>
+#include <maya/MString.h>
 
 const double M_2PI = M_PI * 2.0;
+
+const MTypeId BasicLocator::typeId(0x00336);
+const MString BasicLocator::typeName("basicLocator");
+
+// attributes
+MObject BasicLocator::xWidth;
+MObject BasicLocator::zWidth;
+MObject BasicLocator::dispType;
+
+void *BasicLocator::creator()
+{
+	return new BasicLocator;
+}
+
+MStatus BasicLocator::initialize()
+{
+	MFnUnitAttribute unitFn;
+	MFnNumericAttribute numFn;
+	MStatus stat;
+
+	xWidth = unitFn.create("xWidth", "xw", MFnUnitAttribute::kDistance);
+	unitFn.setDefault(MDistance(1.0, MDistance::uiUnit()));
+	unitFn.setMin(MDistance(0.0, MDistance::uiUnit()));
+	unitFn.setKeyable(true);
+	stat = addAttribute(xWidth);
+	if (!stat)
+	{
+		stat.perror("Unable to add \"xWidth\" attribute");
+		return stat;
+	}
+
+	//zWidth = unitFn.create("zWidth", "zw", MFnUnitAttribute::kDistance, 1.0);
+	zWidth = unitFn.create("zWidth", "zw", MFnUnitAttribute::kDistance);
+	unitFn.setDefault(MDistance(1.0, MDistance::uiUnit()));
+	unitFn.setMin(MDistance(0.0, MDistance::uiUnit()));
+	unitFn.setKeyable(true);
+	stat = addAttribute(zWidth);
+	if (!stat)
+	{
+		stat.perror("Unable to add \"zWidth\" attribute");
+		return stat;
+	}
+
+	dispType = numFn.create("dispType", "dt", MFnNumericData::kShort);
+	numFn.setDefault(0);
+	numFn.setMin(0);
+	numFn.setMax(2);
+	numFn.setKeyable(true);
+	stat = addAttribute(dispType);
+	if (!stat)
+	{
+		stat.perror("Unable to add \"dispType\" attribute");
+		return stat;
+	}
+
+	return MS::kSuccess;
+}
 
 bool BasicLocator::getCirclePoints(MPointArray &pts) const
 {
@@ -71,7 +133,7 @@ void BasicLocator::draw(M3dView &view, const MDagPath &path,
 	getCirclePoints(pts);
 
 	glBegin(GL_LINE_STRIP);
-		for (size_t i = 0; i < pts.length(); i++)
+		for (unsigned i = 0; i < pts.length(); i++)
 		{
 			glVertex3f(float(pts[i].x), float(pts[i].y), float(pts[i].z));
 		}
@@ -93,3 +155,18 @@ bool BasicLocator::isBounded() const
 {
 	return true;
 }
+
+MBoundingBox BasicLocator::boundingBox() const
+{
+	MPointArray pts;
+	getCirclePoints(pts);
+
+	MBoundingBox bbox;
+	for (unsigned i = 0; i < pts.length(); i++)
+	{
+		bbox.expand(pts[i]);
+	}
+
+	return bbox;
+}
+
