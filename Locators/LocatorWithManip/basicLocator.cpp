@@ -18,6 +18,16 @@ MObject BasicLocator::xWidth;
 MObject BasicLocator::zWidth;
 MObject BasicLocator::dispType;
 
+BasicLocator::BasicLocator()
+{
+	MGlobal::displayInfo("BasicLocator ctor");
+}
+
+BasicLocator::~BasicLocator()
+{
+
+}
+
 MStatus BasicLocator::compute(const MPlug &plug, MDataBlock &data)
 {
 	return MS::kUnknownParameter;
@@ -68,7 +78,7 @@ MBoundingBox BasicLocator::boundingBox() const
 
 void *BasicLocator::creator()
 {
-	return new BasicLocator;
+	return new BasicLocator();
 }
 
 MStatus BasicLocator::initialize()

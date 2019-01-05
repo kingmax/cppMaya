@@ -40,19 +40,19 @@ MStatus BasicLocatorManip::connectToDependNode(const MObject & node)
 	MFnDistanceManip xWidthFn(xWidthDagPath);
 	MPlug xWidthPlug = nodeFn.findPlug("xWidth", &stat);
 	xWidthFn.connectToDistancePlug(xWidthPlug);
-	addPlugToManipConversionCallback(xWidthFn.startPointIndex(), (plugToManipConversionCallback)centerPointCallback);
-	addPlugToManipConversionCallback(xWidthFn.directionIndex(), (plugToManipConversionCallback)sideDirectionCallback);
+	addPlugToManipConversionCallback(xWidthFn.startPointIndex(), (plugToManipConversionCallback)&BasicLocatorManip::centerPointCallback);
+	addPlugToManipConversionCallback(xWidthFn.directionIndex(), (plugToManipConversionCallback)&BasicLocatorManip::sideDirectionCallback);
 
 	MFnDistanceManip zWidthFn(zWidthDagPath);
 	MPlug zWidthPlug = nodeFn.findPlug("zWidth", &stat);
 	zWidthFn.connectToDistancePlug(zWidthPlug);
-	addPlugToManipConversionCallback(zWidthFn.startPointIndex(), (plugToManipConversionCallback)centerPointCallback);
-	addPlugToManipConversionCallback(zWidthFn.directionIndex(), (plugToManipConversionCallback)backDirectionCallback);
+	addPlugToManipConversionCallback(zWidthFn.startPointIndex(), (plugToManipConversionCallback)&BasicLocatorManip::centerPointCallback);
+	addPlugToManipConversionCallback(zWidthFn.directionIndex(), (plugToManipConversionCallback)&BasicLocatorManip::backDirectionCallback);
 
 	MFnStateManip typeFn(typeDagPath);
 	MPlug typePlug = nodeFn.findPlug("dispType", &stat);
 	typeFn.connectToStatePlug(typePlug);
-	addPlugToManipConversionCallback(typeFn.positionIndex(), (plugToManipConversionCallback)centerPointCallback);
+	addPlugToManipConversionCallback(typeFn.positionIndex(), (plugToManipConversionCallback)&BasicLocatorManip::centerPointCallback);
 
 	finishAddingManips(); 
 	MPxManipContainer::connectToDependNode(node);
@@ -78,7 +78,7 @@ void BasicLocatorManip::draw(M3dView & view, const MDagPath & path, M3dView::Dis
 	char str[100];
 	MVector TextVector;
 	MString distanceText;
-	strcpy(str, "XWidth");
+	strcpy_s(str, "XWidth");
 	distanceText = str;
 	
 	MVector xWidthTrans = nodeTranslation();
@@ -87,14 +87,14 @@ void BasicLocatorManip::draw(M3dView & view, const MDagPath & path, M3dView::Dis
 	
 	view.drawText(distanceText, TextVector, M3dView::kLeft);
 
-	strcpy(str, "ZWidth");
+	strcpy_s(str, "ZWidth");
 	distanceText = str;
 	MVector zWidthTrans = nodeTranslation();
 	TextVector = zWidthTrans;
 	TextVector += worldOffset(MVector(0, 0, zWidth));
 	view.drawText(distanceText, TextVector, M3dView::kLeft);
 
-	strcpy(str, "Type");
+	strcpy_s(str, "Type");
 	distanceText = str;
 	TextVector = nodeTranslation();
 	TextVector += worldOffset(MVector(0, 0.1, 0));
@@ -106,7 +106,7 @@ void BasicLocatorManip::draw(M3dView & view, const MDagPath & path, M3dView::Dis
 
 void * BasicLocatorManip::creator()
 {
-	return new BasicLocatorManip;
+	return new BasicLocatorManip();
 }
 
 
@@ -120,7 +120,8 @@ MVector BasicLocatorManip::nodeTranslation() const
 	path.pop();
 
 	MFnTransform transformFn(path);
-	return transformFn.translation(MSpace::kWorld);
+	//return transformFn.translation(MSpace::kWorld);
+	return transformFn.getTranslation(MSpace::kWorld);
 }
 
 MVector BasicLocatorManip::worldOffset(MVector vect) const

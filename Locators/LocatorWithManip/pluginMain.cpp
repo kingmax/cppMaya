@@ -10,8 +10,8 @@ MStatus initializePlugin(MObject obj)
 
 	stat = plugin.registerNode(BasicLocator::typeName,
 		BasicLocator::typeId,
-		BasicLocator::creator,
-		BasicLocator::initialize,
+		&BasicLocator::creator,
+		&BasicLocator::initialize,
 		MPxNode::kLocatorNode);
 	if (!stat)
 	{
@@ -21,8 +21,8 @@ MStatus initializePlugin(MObject obj)
 
 	stat = plugin.registerNode(BasicLocatorManip::typeName,
 		BasicLocatorManip::typeId,
-		BasicLocatorManip::creator,
-		BasicLocatorManip::initialize,
+		&BasicLocatorManip::creator,
+		&BasicLocatorManip::initialize,
 		MPxNode::kManipContainer);
 	if (!stat)
 	{

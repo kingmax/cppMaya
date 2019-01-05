@@ -5,6 +5,9 @@
 class BasicLocator : public MPxLocatorNode
 {
 public:
+	BasicLocator();
+	virtual ~BasicLocator();
+
 	virtual MStatus compute(const MPlug&, MDataBlock&);
 	virtual void draw(M3dView&, const MDagPath&, M3dView::DisplayStyle, M3dView::DisplayStatus);
 

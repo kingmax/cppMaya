@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.mll</TargetExt>
+    <OutDir>..\..\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,6 +131,9 @@
   <ItemGroup>
     <ClInclude Include="basicLocator.h" />
     <ClInclude Include="basicLocatorManip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LocatorWithManip_test.mel" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
