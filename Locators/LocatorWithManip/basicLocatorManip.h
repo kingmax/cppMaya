@@ -24,6 +24,7 @@ public:
 
 	MManipData centerPointCallback(unsigned index) const;
 
+
 	// Paths to child manipulators
 	MDagPath xWidthDagPath;
 	MDagPath zWidthDagPath;

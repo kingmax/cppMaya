@@ -123,9 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basicLocator.cpp" />
     <ClCompile Include="basicLocatorManip.cpp" />
+    <ClCompile Include="pluginMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basicLocator.h" />
     <ClInclude Include="basicLocatorManip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,9 +2,11 @@
 #include <maya/MFnDistanceManip.h>
 #include <maya/MFnStateManip.h>
 #include <maya/MFnDependencyNode.h>
+#include <maya/MGlobal.h>
 
 const MTypeId BasicLocatorManip::typeId(0x00338);
 
+// The name must have "Manip" appended to the locator/node name it will affect
 const MString BasicLocatorManip::typeName("basicLocatorManip");
 
 MStatus BasicLocatorManip::createChildren()
@@ -52,9 +54,9 @@ MStatus BasicLocatorManip::connectToDependNode(const MObject & node)
 	typeFn.connectToStatePlug(typePlug);
 	addPlugToManipConversionCallback(typeFn.positionIndex(), (plugToManipConversionCallback)centerPointCallback);
 
-	finishAddingManips();
+	finishAddingManips(); 
 	MPxManipContainer::connectToDependNode(node);
-	return MS::kSuccess;
+	return stat;
 }
 
 void BasicLocatorManip::draw(M3dView & view, const MDagPath & path, M3dView::DisplayStyle style, M3dView::DisplayStatus status)
@@ -102,11 +104,60 @@ void BasicLocatorManip::draw(M3dView & view, const MDagPath & path, M3dView::Dis
 	view.endGL();
 }
 
+void * BasicLocatorManip::creator()
+{
+	return new BasicLocatorManip;
+}
+
+
+
+MVector BasicLocatorManip::nodeTranslation() const
+{
+	MFnDagNode dagFn(targetObj);
+	MDagPath path;
+	dagFn.getPath(path);
+
+	path.pop();
+
+	MFnTransform transformFn(path);
+	return transformFn.translation(MSpace::kWorld);
+}
+
+MVector BasicLocatorManip::worldOffset(MVector vect) const
+{
+	MVector axis;
+	MFnDagNode transform(targetObj);
+	MDagPath path;
+	transform.getPath(path);
+	MVector pos(path.inclusiveMatrix() * MVector(0, 0, 0));
+	axis = vect * path.inclusiveMatrix();
+	axis = axis - pos;
+	return axis;
+}
+
 MManipData BasicLocatorManip::centerPointCallback(unsigned index) const
 {
 	MFnNumericData numData;
 	MObject numDataObj = numData.create(MFnNumericData::k3Double);
 	MVector vec = nodeTranslation();
+	numData.setData(vec.x, vec.y, vec.z);
+	return MManipData(numDataObj);
+}
+
+MManipData BasicLocatorManip::sideDirectionCallback(unsigned index) const
+{
+	MFnNumericData numData;
+	MObject numDataObj = numData.create(MFnNumericData::k3Double);
+	MVector vec = worldOffset(MVector(1, 0, 0));
+	numData.setData(vec.x, vec.y, vec.z);
+	return MManipData(numDataObj);
+}
+
+MManipData BasicLocatorManip::backDirectionCallback(unsigned index) const
+{
+	MFnNumericData numData;
+	MObject numDataObj = numData.create(MFnNumericData::k3Double);
+	MVector vec = worldOffset(MVector(0, 0, 1));
 	numData.setData(vec.x, vec.y, vec.z);
 	return MManipData(numDataObj);
 }

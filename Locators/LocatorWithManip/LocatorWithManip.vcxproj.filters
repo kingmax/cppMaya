@@ -18,9 +18,18 @@
     <ClCompile Include="basicLocatorManip.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="basicLocator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pluginMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicLocatorManip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="basicLocator.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
