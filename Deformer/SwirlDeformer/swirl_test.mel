@@ -1,0 +1,9 @@
+string $dir="D:\\git\\cppMaya\\Release";
+string $nam="SwirlDeformer.mll";
+$plg = $dir + "\\" + $nam;
+if(`pluginInfo -q -loaded $plg` && !`pluginInfo -q -unloadOk $plg`)
+    file -f -new;
+unloadPlugin $nam;
+loadPlugin $plg;
+
+deformer -type swirl;
