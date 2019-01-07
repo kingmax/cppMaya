@@ -5,6 +5,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <maya/MDagModifier.h>
+#include <maya/MFnMatrixAttribute.h>
+#include <maya/MFnUnitAttribute.h>
+#include <maya/MDistance.h>
 
 MTypeId SwirlDeformer::typeId(0x00339);
 MString SwirlDeformer::typeName("swirl");
@@ -106,3 +109,30 @@ MStatus SwirlDeformer::accessoryNodeSetup(MDagModifier &dagMod)
 	return stat;
 }
 
+MStatus SwirlDeformer::initialize()
+{
+	MFnMatrixAttribute mAttr;
+	deformSpace = mAttr.create("deformSpace", "dSp");
+	mAttr.setStorable(false);
+
+	MFnUnitAttribute unitFn;
+	startDist = unitFn.create("startDist", "sd", MFnUnitAttribute::kDistance);
+	unitFn.setDefault(MDistance(0.0, MDistance::uiUnit()));
+	unitFn.setMin(MDistance(0.0, MDistance::uiUnit()));
+	unitFn.setKeyable(true);
+
+	endDist = unitFn.create("endDist", "ed", MFnUnitAttribute::kDistance);
+	unitFn.setDefault(MDistance(3.0, MDistance::uiUnit()));
+	unitFn.setMin(MDistance(0.0, MDistance::uiUnit()));
+	unitFn.setKeyable(true);
+
+	addAttribute(deformSpace);
+	addAttribute(startDist);
+	addAttribute(endDist);
+
+	attributeAffects(deformSpace, outputGeom);
+	attributeAffects(startDist, outputGeom);
+	attributeAffects(endDist, outputGeom);
+
+	return MS::kSuccess;
+}
