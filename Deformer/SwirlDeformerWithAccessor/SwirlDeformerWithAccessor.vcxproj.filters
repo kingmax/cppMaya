@@ -18,6 +18,9 @@
     <ClCompile Include="swirlDeformer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="pluginMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="swirlDeformer.h">
